@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path"
+
+	"goweather.com/goweather/internal/config"
 )
 
 var nowConfig struct {
@@ -19,7 +21,7 @@ Get Weather data for city
 Options:
 `
 
-func GetCurrentWeather(args []string) {
+func GetCurrentWeather(cfg *config.Config, args []string) {
 
 	fs := flag.NewFlagSet("now", flag.ExitOnError)
 	fs.Usage = func() {

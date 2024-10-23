@@ -5,13 +5,14 @@ import (
 	"os"
 	"path"
 
+	"goweather.com/goweather/internal/config"
 	"goweather.com/goweather/pkg/commands"
 )
 
 type Command struct {
 	name    string
 	desc    string
-	execute func([]string)
+	execute func(*config.Config, []string)
 }
 
 func (c Command) String() string {
@@ -44,6 +45,13 @@ func usageMessage() {
 }
 func main() {
 
+	cfg, err := config.LoadConfig()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error loading config file: %s", err)
+		os.Exit(1)
+	}
+
 	if len(os.Args) < 2 {
 		fmt.Fprintf(os.Stderr, "Error: missing command\n")
 		usageMessage()
@@ -56,7 +64,7 @@ func main() {
 		os.Exit(1)
 	case "now", "forecast":
 		command := cs[os.Args[1]]
-		command.execute(os.Args[1:])
+		command.execute(cfg, os.Args[1:])
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Wrong Command")
 		usageMessage()
