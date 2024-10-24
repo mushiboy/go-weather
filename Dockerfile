@@ -12,4 +12,10 @@ RUN apk add --no-cache bash
 
 COPY --from=builder /goweather /usr/local/bin/goweather
 
+# Create the directory structure for the config file
+RUN mkdir -p /usr/local/etc/goweather/internal/config
+
+# Copy the config file to the correct location
+COPY --from=builder /app/internal/config/config.json /usr/local/etc/goweather/internal/config/config.json
+
 ENTRYPOINT [ "/bin/bash" ]

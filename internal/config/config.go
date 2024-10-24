@@ -13,7 +13,8 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
-	filepath := "./internal/config/config.json"
+	// filepath := "/internal/config/config.json"
+	filepath := "/usr/local/etc/goweather/internal/config/config.json"
 	file, err := os.Open(filepath)
 
 	if err != nil {

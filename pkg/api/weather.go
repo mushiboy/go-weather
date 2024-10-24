@@ -43,22 +43,26 @@ func GetWeatherByCity(apiKey string, baseUrl string, geoCode models.Geocode, det
 }
 
 var detailedWeather = `
-Temperature: %.2f°C
-Feels Like: %.2f°C
-Min Temperature: %.2f°C
-Max Temperature: %.2f°C
-Pressure: %.2f hPa
-Humidity: %.2f percent
-Wind Speed: %.2f m/s
-Wind Direction: %d°
-Cloudiness: %d percent
-Weather: %s - %s
+
+Temperature		: %.2f°C
+Feels Like		: %.2f°C
+Min Temperature	: %.2f°C
+Max Temperature	: %.2f°C
+Pressure		: %.2f hPa
+Humidity		: %.2f percent
+Wind Speed		: %.2f m/s
+Wind Direction	: %d°
+Cloudiness		: %d percent
+Weather			: %s - %s
+
 `
 
 var weather = `
-Temperature: %.2f°C
-Feels Like: %.2f°C
-Weather: %s - %s
+
+Temperature	: %.2f°C
+Feels Like	: %.2f°C
+Weather		: %s - %s
+
 `
 
 func weatherOut(weatherResponse models.CurrentWeather, detailed bool) string {
