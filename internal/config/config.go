@@ -6,9 +6,10 @@ import (
 )
 
 type Config struct {
-	APIKey          string `json:"api_key"`
-	BaseUrlCurrent  string `json:"base_url_current"`
-	BaseUrlForecast string `json:"base_url_forecast"`
+	APIKey           string `json:"api_key"`
+	BaseUrlCurrent   string `json:"base_url_current"`
+	BaseUrlForecast  string `json:"base_url_forecast"`
+	BaseUrlGeoCoding string `json:"base_url_geocoding"`
 }
 
 func LoadConfig() (*Config, error) {

@@ -7,6 +7,7 @@ import (
 	"path"
 
 	"goweather.com/goweather/internal/config"
+	"goweather.com/goweather/pkg/api"
 )
 
 var nowConfig struct {
@@ -33,9 +34,17 @@ func GetCurrentWeather(cfg *config.Config, args []string) {
 	fs.BoolVar(&nowConfig.detailed, "detailed", false, "Detailed description of weather")
 	fs.Parse(args[1:])
 
-	if nowConfig.detailed {
-		fmt.Fprintf(os.Stdout, "Detailed Weather of %s :)\n", nowConfig.city)
-	} else {
-		fmt.Fprintf(os.Stdout, "Not so detailed of %s :(\n", nowConfig.city)
+	geocode, gErr := api.GetGeoCode(cfg.BaseUrlGeoCoding, cfg.APIKey, nowConfig.city)
+
+	if gErr != nil {
+		fmt.Fprintf(os.Stderr, "Error fetching GeoCode: %s", gErr)
 	}
+
+	out, err := api.GetWeatherByCity(cfg.APIKey, cfg.BaseUrlCurrent, geocode, nowConfig.detailed)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %s", err)
+	}
+
+	fmt.Fprintf(os.Stdout, out)
 }

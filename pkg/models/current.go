@@ -27,10 +27,18 @@ type Clouds struct {
 	All int `json:"all"`
 }
 
+type Sys struct {
+	Type    int    `json:"type"`
+	Country string `json:"country"`
+	Sunrise int64  `json:"sunrise"`
+	Sunset  int64  `json:"sunset"`
+}
+
 type CurrentWeather struct {
-	Weather Weather `json:"weather"`
-	Basic   Main    `json:"main"`
-	Wind    Wind    `json:"wind"`
-	Rain    Rain    `json:"rain"`
-	Cloud   Clouds  `json:"clouds"`
+	Weather []Weather `json:"weather"`
+	Basic   Main      `json:"main"`
+	Wind    Wind      `json:"wind"`
+	Rain    Rain      `json:"rain"`
+	Cloud   Clouds    `json:"clouds"`
+	Sys     Sys       `json:"sys"`
 }
