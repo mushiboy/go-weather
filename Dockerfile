@@ -18,4 +18,4 @@ RUN mkdir -p /usr/local/etc/goweather/internal/config
 # Copy the config file to the correct location
 COPY --from=builder /app/internal/config/config.json /usr/local/etc/goweather/internal/config/config.json
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/bash", "goweather now"]
