@@ -20,4 +20,4 @@ COPY --from=builder /app/internal/config/config.json /usr/local/etc/goweather/in
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/bin/bash"]
+ENTRYPOINT [ "/usr/local/bin/goweather"]
